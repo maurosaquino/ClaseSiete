@@ -1,0 +1,55 @@
+INSERT INTO `vehiculo`(`patente`, `ingreso`) VALUES 
+("AAA111","30/09/2016 13:00:00"),("DDD444","03/10/2016 15:00:00")
+("BBB222","29/09/2016 13:00:00"),("EEE555","02/10/2016 15:00:00")
+("CCC333","28/09/2016 13:00:00"),("FFF666","01/10/2016 15:00:00")
+
+
+
+SELECT * FROM `vehiculo`
+
+
+SELECT patente,
+	   ingreso as "Entrada" 
+FROM `vehiculo`
+
+
+SELECT v.patente as "Patente",
+       v.ingreso as "Entrada",
+       v.salida  as "Salida",
+       u.nombre  as "Empleado",
+       lu.descripcion as "Localidad Empleado",
+       s.nombre as "Socio",
+       ls.descripcion as "Localidad Socio"
+FROM `vehiculo`  v,
+     `usuario`   u,
+     `socio`     s,
+     `localidad` lu,
+     `localidad` ls
+WHERE v.id_empleado = u.id
+AND   v.id_socio = s.id
+AND   s.id_localidad = ls.id
+AND   u.id_localidad = lu.id
+AND   (lu.descripcion = ls.descripcion)
+AND   lu.descripcion = "Lanus"
+
+/////////////////////////////////////////
+
+SELECT v.patente as "Patente",
+       v.ingreso as "Entrada",
+       v.salida  as "Salida",
+       u.nombre  as "Empleado",
+       s.nombre as "Socio",
+FROM `vehiculo`  v,
+     `usuario`   u,
+     `socio`     s,
+     `localidad` l,
+WHERE v.id_empleado = u.id
+AND   v.id_socio = s.id
+AND   s.id_localidad = l.id
+AND   u.id_localidad = l.id
+AND   lu.descripcion = "Lanus"
+
+
+////////////////////////////////////////
+
+SELECT v.patente as "Patente", v.ingreso as "Entrada", v.salida as "Salida", u.nombre as "Empleado", lu.descripcion as "Localidad Empleado", s.nombre as "Socio", ls.descripcion as "Localidad Socio" FROM `vehiculo` v, `usuario` u, `socio` s, `localidad` lu, `localidad` ls WHERE v.id_empleado = u.id AND v.id_socio = s.id AND s.id_localidad = ls.id AND u.id_localidad = lu.id AND lu.descripcion = "Lanus" AND ls.descripcion = "Avellaneda"
